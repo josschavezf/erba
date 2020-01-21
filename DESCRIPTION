@@ -1,0 +1,35 @@
+Package: erba
+Type: Package
+Title: erba: Expression Regulators from Bacteria and Archaea
+Version: 0.9.0
+Published: 2018-08-23
+Author: Joselyn Chavez
+Maintainer: Joselyn Chavez <joselynchavezf@gmail.com>
+BugReports: https://github.com/josschavezf/erba/issues
+Description: erba package includes functions to analyze and plot distribution of sigma factors, 
+    transcription factors and riboswitches.
+License: GPL-3
+Encoding: UTF-8
+LazyData: TRUE
+RoxygenNote: 7.0.2
+Imports: 
+    ggplot2,
+    data.table,
+    purrr,
+    reshape2,
+    ggdendro,
+    plotly,
+    scales
+Depends:
+    ggplot2,
+    data.table,
+    purrr,
+    reshape2,
+    ggdendro,
+    plotly,
+    scales,
+    dendextend
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
