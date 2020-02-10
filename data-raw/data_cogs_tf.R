@@ -1,10 +1,10 @@
 ## code to prepare `data_cogs_tf` dataset
 
 ## import data for all transcription factors classified by KO (KEGG Orthology)
-list_data_tf <- erba::data_to_list("COG")
+list_data_tf <- erba::data_to_list(pattern = "COG")
 
 ## filter by specie: take the biggest genome from each specie to avoid repetitive strains
-transcription_factor <- purrr::map(list_data_tf, filter_specie)
+transcription_factor <- purrr::map(list_data_tf, filter_specie2)
 
 ## group all counts per ko in each organism and put them in a table
 data_cogs_tf <- erba::group_to_table(transcription_factor)
@@ -20,12 +20,14 @@ data_cogs_tf <- subset(data_cogs_tf, data_cogs_tf$ORFs > 0)
 data_cogs_tf$ORFs <- data_cogs_tf$ORFs/100
 
 ## set breaks in genome size
+numbers_sf = seq(from = 0, to = 100, by= 5)
+total_groups <- seq(from = 0, to = 200, by = 10)
 data_cogs_tf$breakORFs <- cut(data_cogs_tf$ORFs, breaks = c(numbers_sf, 200))
 data_cogs_tf$breakTotal<- cut(data_cogs_tf$total, breaks = total_groups, include.lowest = TRUE)
 
 # save data into the package
 usethis::use_data_raw(name = "data_cogs_tf")
-usethis::use_data(data_cogs_tf)
+usethis::use_data(data_cogs_tf, overwrite = TRUE)
 
 #usage
 usethis::use_data("data_cogs_tf")

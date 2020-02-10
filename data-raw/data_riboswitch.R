@@ -1,8 +1,7 @@
 ## code to prepare `data_riboswitch` dataset goes here
 
 ## import count of riboswitches per organism per Rfam class
-riboswitch_transcriptional <- read.table("riboswitch_transcriptional_count", header = FALSE)
-riboswitch_transcriptional <- read.table("~/Dropbox/IBT/laboratorio/tablas_conteo/table_transcriptional_riboswitches", header = FALSE)
+riboswitch_transcriptional <- read.table("table_transcriptional_riboswitches", header = FALSE)
 
 ## group occurrence of riboswitches per organism
 data_riboswitch <- erba::transform_riboswitch(riboswitch_transcriptional)
