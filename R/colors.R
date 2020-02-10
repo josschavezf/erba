@@ -22,7 +22,8 @@ colors_groups2<- c("Actinobacteria" = "#ce2e0a",
                    "Proteobacteria" = "#63aded",
                    "Spirochaetes" = "#a745d1",
                    "Tenericutes" = "#efacec",
-                   "Verrucomicrobia" = "#f441c7"
+                   "Verrucomicrobia" = "#f441c7",
+                   "Crenarchaeota" =  "#fc6e1c"
                    )
 #' @export
 colors_represor_activator <- c("non_repressor" = "#c1052e", "repressor" = "#0f2396")

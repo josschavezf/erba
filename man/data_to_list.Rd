@@ -4,14 +4,16 @@
 \alias{data_to_list}
 \title{data_to_list}
 \usage{
-data_to_list(list_by)
+data_to_list(path = "./", pattern = NULL)
 }
 \arguments{
-\item{list_by}{pattern to search in actual directory for files to put in the list}
+\item{path}{path to directory with files}
+
+\item{pattern}{pattern to select files}
 }
 \description{
 Takes all files which names match pattern provided for the user and put them in a list
 }
 \examples{
-list_data_sigma <- data_to_list("K")
+list_data_sigma <- data_to_list(path = "Documents/", pattern = "K")
 }

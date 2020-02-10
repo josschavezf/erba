@@ -11,12 +11,12 @@
 #' plot_points(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ylim = ylim(0,120))
 #' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ylim = ylim(0,120) )
 #' @export
-plot_points <- function(data, type = "general", filename = "figure.tiff", title = "", ylab = "", ylim = ylim(0,200)) {
+plot_points <- function(data, type = "general", filename = "figure.tiff", title = "", ylab = "", y.lim = ylim(0,200)) {
   if (type == "general") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x = ORFs, y = total)) +
       geom_point() +
-      ylim +
+      y.lim +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
       ggtitle(title) +
@@ -37,7 +37,7 @@ plot_points <- function(data, type = "general", filename = "figure.tiff", title 
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x = ORFs, y = total, colour = group)) +
       geom_point() +
-      ylim +
+      y.lim +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
       ggtitle(title) +

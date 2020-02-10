@@ -2,7 +2,7 @@
 
 # import data for all sigma factors classified by KO (KEGG Orthology)
 
-list_data_sigma <- erba::data_to_list("K")
+list_data_sigma <- erba::data_to_list(pattern = "K")
 
 ## filter by specie: take the biggest genome from each specie to avoid repetitive strains
 

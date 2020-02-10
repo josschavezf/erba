@@ -10,7 +10,7 @@ plot_points(
   filename = "figure.tiff",
   title = "",
   ylab = "",
-  ylim = ylim(0, 200)
+  y.lim = ylim(0, 200)
 )
 }
 \arguments{
