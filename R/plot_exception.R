@@ -32,7 +32,7 @@ plot_exception <- function (data, filename, title, ylab, ylim, exception_group) 
                       slope = slope(exception_table$ORFs,exception_table$total)), color = "blue") +
       geom_abline(aes(intercept = intercept(rest_table$ORFs, rest_table$total,
                                             slope(rest_table$ORFs, rest_table$total)),
-                      slope = slope(rest_table$ORFs, rest_table$total)),color = "blue" ,linetype = "dotted", size = 1.5) +
+                      slope = slope(rest_table$ORFs, rest_table$total)),color = "red", size = 1) +
       ggtitle(title) +
       labs(x= "ORFs (x 100)", y = ylab) +
       theme(panel.grid.major = element_blank(),
