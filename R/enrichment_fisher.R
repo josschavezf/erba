@@ -23,8 +23,8 @@ enrichment_fisher <- function(x, column_names, replace_by = NULL, phylogeny = se
 
   for (phylum in phylogeny) {
     for (column in column_names) {
-      col_i <- sum(x[x$group == phylum, column])  # freq of the ko/cog in the phylogenetic group of interest
-      col_rest_i <- sum(x[x$group == phylum,"total"]) - col_i # total kos/cogs in the phylogenetic group of interest
+      col_i <- sum(x[x$phylum == phylum, column])  # freq of the ko/cog in the phylogenetic group of interest
+      col_rest_i <- sum(x[x$phylum == phylum,"total"]) - col_i # total kos/cogs in the phylogenetic group of interest
       col_total <- sum(x[,column]) - col_i # total of the ko/cog in all phyla
       total_total <- sum(x$total) - col_total - col_i # total of all kos/cogs in all phyla
 

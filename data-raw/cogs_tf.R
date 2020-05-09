@@ -1,12 +1,11 @@
 ## code to prepare `cogs_tf` dataset
 
-file <- "cogs_transcription_factor"
-cogs_tf <- read.delim(file, header = FALSE)
-cogs_tf <- as.vector(cogs_tf$V1)
+file <- "Supplementary_Table_1.txt"
+cogs_tf <- readr::read_tsv(file)
+cogs_tf <- cogs_tf$COG
 
 # save data into the package
-usethis::use_data_raw(name = "cogs_tf")
-usethis::use_data(cogs_tf)
+usethis::use_data(cogs_tf, overwrite = TRUE)
 
 # usage
 usethis::use_data("cogs_tf")

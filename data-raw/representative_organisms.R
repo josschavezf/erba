@@ -8,7 +8,6 @@ representative_organisms <-  filter_specie(list_data_sigma[[1]])
 representative_organisms <- representative_organisms$V1
 
 # save data into the package
-usethis::use_data_raw(name = "representative_organisms")
 usethis::use_data(representative_organisms, overwrite = TRUE)
 
 # usage

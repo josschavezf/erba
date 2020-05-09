@@ -1,31 +1,32 @@
 #' plot_exception
 #'
 #' @description plot total regulators versus ORFs per genome with double distribution
-#' @param data A data.frame object
+#' @param x A data.frame object
 #' @param exception_group phylum to be used as exception
 #' @param filename file name with .tiff extension
 #' @param title plot name inside " "
 #' @param ylab ylab name inside " "
-#' @param ylim ylab limit in format (x,y)
+#' @param ymin A number setting the ylab inferior limit.
+#' @param ymax A number setting the ylab superior limit.
 #' @examples
 #' plot_exception(data_riboswitch, filename = "riboswitch.tiff",
-#' title = "Riboswitches",
-#' ylab = "Riboswitches per genome",
-#' ylim = ylim(0,120),
-#' exception_group = "Firmicutes" )
+#'                 title = "Riboswitches",
+#'                 ylab = "Riboswitches per genome",
+#'                 ymax = 80,
+#'                 exception_group = "Firmicutes" )
 
 #' @export
-plot_exception <- function (data, filename, title, ylab, ylim, exception_group) {
-    exception_table <- data[data$group == exception_group,]
-    rest_table <- data[!(data$group == exception_group),]
+plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "", ymin = 0, ymax = 120, exception_group = NULL) {
+    exception_table <- x %>% filter(phylum == exception_group)
+    rest_table <- x %>% filter(!phylum == exception_group)
     print(exception_group)
     print(slope(exception_table$ORFs,exception_table$total))
     print("Rest")
     print(slope(rest_table$ORFs, rest_table$total))
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(data, aes(x = ORFs, y = total)) +
+    myplot <- ggplot(x, aes(x = ORFs, y = total)) +
       geom_point() +
-      ylim +
+      ylim(ymin, ymax) +
       xlim(0,100) +
       geom_abline(aes(intercept = intercept(exception_table$ORFs, exception_table$total,
                                             slope(exception_table$ORFs,exception_table$total)),

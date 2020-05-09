@@ -4,10 +4,18 @@
 \alias{plot_exception}
 \title{plot_exception}
 \usage{
-plot_exception(data, filename, title, ylab, ylim, exception_group)
+plot_exception(
+  x,
+  filename = "figure.tiff",
+  title = "",
+  ylab = "",
+  ymin = 0,
+  ymax = 120,
+  exception_group = NULL
+)
 }
 \arguments{
-\item{data}{A data.frame object}
+\item{x}{A data.frame object}
 
 \item{filename}{file name with .tiff extension}
 
@@ -15,7 +23,9 @@ plot_exception(data, filename, title, ylab, ylim, exception_group)
 
 \item{ylab}{ylab name inside " "}
 
-\item{ylim}{ylab limit in format (x,y)}
+\item{ymin}{A number setting the ylab inferior limit.}
+
+\item{ymax}{A number setting the ylab superior limit.}
 
 \item{exception_group}{phylum to be used as exception}
 }
@@ -24,8 +34,8 @@ plot total regulators versus ORFs per genome with double distribution
 }
 \examples{
 plot_exception(data_riboswitch, filename = "riboswitch.tiff",
-title = "Riboswitches",
-ylab = "Riboswitches per genome",
-ylim = ylim(0,120),
-exception_group = "Firmicutes" )
+                title = "Riboswitches",
+                ylab = "Riboswitches per genome",
+                ymax = 80,
+                exception_group = "Firmicutes" )
 }

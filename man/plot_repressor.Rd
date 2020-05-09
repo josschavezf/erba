@@ -4,7 +4,7 @@
 \alias{plot_repressor}
 \title{plot_repressor}
 \usage{
-plot_repressor(data, filename, title, ylab, ylim)
+plot_repressor(data, filename, title, ylab, ymin = 0, ymax = 150)
 }
 \arguments{
 \item{data}{A data.frame object, needs to have the columns repressor and non_repressor for transcription factors}
@@ -15,7 +15,9 @@ plot_repressor(data, filename, title, ylab, ylim)
 
 \item{ylab}{ylab name inside " "}
 
-\item{ylim}{y limit in format (x,y)}
+\item{ymin}{ylim min}
+
+\item{ymax}{ylim max}
 }
 \description{
 plot repressor and non_repressor transcription factors versus ORFs per genome

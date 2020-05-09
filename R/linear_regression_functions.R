@@ -26,29 +26,26 @@ intercept <- function(x, y, m){
 #' get_correlation
 #' @description Get correlation index of regulator's total number versus ORFs number per
 #' organism. Shows correlation for each phylogenetic group.
-#' @param inputTable table object
-#' @import plyr
+#' @param x table object
+#' @importFrom dplyr as_tibble summarise %>%
 #' @export
-get_correlation <- function(inputTable){
-  myTable <- inputTable
-  require(plyr)
-  func <- function(myTable)
-  {
-    return(data.frame(COR = cor(myTable$total, myTable$ORFs)))
-  }
+get_correlation <- function(x){
+  as_tibble(x) %>%
+    group_by(phylum) %>%
+    dplyr::summarise(cor = cor(total, ORFs))
 
-  myCorrelation <- ddply(myTable, .(group), func)
-  return(myCorrelation)
 }
-
 
 #' get_linear_coefficients
 #' @description Get intercept and slope from the data's linear model
-#' @param inputTable data frame to calculate regression model coefficients
+#' @param x data frame to calculate regression model coefficients
+#' @importFrom dplyr %>%
 #' @export
-get_linear_coefficients <- function(inputTable){
+get_linear_coefficients <- function(x){
   for (i in selected_phylogeny) {
-    myTable <- inputTable[inputTable$group %like% i, c("total", "ORFs")]
+    myTable <- x %>%
+      filter(phylum == i) %>%
+      select(total, ORFs)
     my_model <- lm(total~ORFs, data = myTable)
     print(i)
     print(coef(my_model))

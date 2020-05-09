@@ -4,10 +4,10 @@
 \alias{get_linear_coefficients}
 \title{get_linear_coefficients}
 \usage{
-get_linear_coefficients(inputTable)
+get_linear_coefficients(x)
 }
 \arguments{
-\item{inputTable}{data frame to calculate regression model coefficients}
+\item{x}{data frame to calculate regression model coefficients}
 }
 \description{
 Get intercept and slope from the data's linear model

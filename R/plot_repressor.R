@@ -1,11 +1,14 @@
 #' plot_repressor
 #'
 #' @description plot repressor and non_repressor transcription factors versus ORFs per genome
+#'
 #' @param data A data.frame object, needs to have the columns repressor and non_repressor for transcription factors
 #' @param filename file name with .tiff extension
 #' @param title plot name inside " "
+#' @param ymin ylim min
+#' @param ymax ylim max
 #' @param ylab ylab name inside " "
-#' @param ylim y limit in format (x,y)
+#'
 #' @examples
 #' plot_repressor(tf_repressor_non_repressor,
 #' filename = "tf_repressor.tiff",
@@ -13,12 +16,12 @@
 #' title = "Transcription factors per genome",
 #' ylim(0,120))
 #' @export
-plot_repressor <- function(data, filename, title, ylab, ylim) {
+plot_repressor <- function(data, filename, title, ylab, ymin = 0, ymax = 150) {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data) +
       geom_point(aes(x = ORFs, y = repressor, colour = "repressor")) +
       geom_point(aes(x = ORFs, y = non_repressor, colour = "non_repressor")) +
-      ylim +
+      ylim(ymin, ymax) +
       xlim(0,100) +
       geom_abline(aes(intercept = intercept(ORFs, repressor, slope(ORFs,repressor)), slope = slope(ORFs,repressor), color = "repressor")) +
       geom_abline(aes(intercept = intercept(ORFs, non_repressor, slope(ORFs,non_repressor)), slope = slope(ORFs,non_repressor), color = "non_repressor")) +

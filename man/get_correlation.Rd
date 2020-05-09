@@ -4,10 +4,10 @@
 \alias{get_correlation}
 \title{get_correlation}
 \usage{
-get_correlation(inputTable)
+get_correlation(x)
 }
 \arguments{
-\item{inputTable}{table object}
+\item{x}{table object}
 }
 \description{
 Get correlation index of regulator's total number versus ORFs number per

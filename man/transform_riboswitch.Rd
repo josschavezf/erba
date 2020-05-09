@@ -7,7 +7,7 @@
 transform_riboswitch(x)
 }
 \arguments{
-\item{x}{data frame with organism, gene and riboswitch columns.}
+\item{x}{A data frame with organism, gene and riboswitch columns.}
 }
 \value{
 A \code{data.frame} with counts of riboswitches per organism and genome information.

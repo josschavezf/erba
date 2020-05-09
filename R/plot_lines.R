@@ -1,4 +1,4 @@
-#' plot_points
+#' plot_lines
 #'
 #' @description plot total regulators versus ORFs per genome
 #' @param data A data.frame object
@@ -9,14 +9,13 @@
 #' @param ymin A number setting the ylab inferior limit.
 #' @param ymax A number setting the ylab superior limit.
 #' @examples
-#' plot_points(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120)
-#' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
+#' plot_lines(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120)
+#' plot_lines(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
 #' @export
-plot_points <- function(data, type = "general", filename = "figure.tiff", title = "", ylab = "", ymin = 0, ymax = 200 ) {
+plot_lines <- function(data, type = "general", filename = "figure.tiff", title = "", ylab = "", ymin = 0, ymax = 200 ) {
   if (type == "general") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x = ORFs, y = total)) +
-      geom_point() +
       ylim(ymin, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
@@ -37,7 +36,6 @@ plot_points <- function(data, type = "general", filename = "figure.tiff", title 
   if (type == "groups") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x = ORFs, y = total, colour = phylum)) +
-      geom_point() +
       ylim(ymin, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
