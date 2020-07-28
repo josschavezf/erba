@@ -12,16 +12,13 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 3.6.0)
 Imports: 
-    dendextend,
     dplyr,
-    ggdendro,
     ggplot2,
-    plotly,
     purrr,
     reshape2,
     scales
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,
