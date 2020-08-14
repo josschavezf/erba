@@ -1,23 +1,26 @@
 #' plot_points
 #'
 #' @description plot total regulators versus ORFs per genome
+#'
 #' @param data A data.frame object
 #' @param type either "general" or "groups" for plotting per phylogenetic group
 #' @param filename file name with .tiff extension
-#' @param title plot name inside " "
-#' @param ylab yLab name inside " "
-#' @param ymin A number setting the ylab inferior limit.
+#' @param title plot title
+#' @param ylab y-axis title
+#' @param column_total y column name
+#' @param column_orfs x column name
 #' @param ymax A number setting the ylab superior limit.
+#'
 #' @examples
 #' plot_points(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120)
 #' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
 #' @export
-plot_points <- function(data, type = "general", filename = "figure.tiff", title = "", ylab = "", ymin = 0, ymax = 200 ) {
+plot_points <- function(data, type = "general", column_total = "total", column_orfs = "ORFs",filename = "figure.tiff", title = "", ylab = "", ymax = 200 ) {
   if (type == "general") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(data, aes(x = ORFs, y = total)) +
+    myplot <- ggplot(data, aes(x = column_orfs, y = column_total)) +
       geom_point() +
-      ylim(ymin, ymax) +
+      ylim(0, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
       ggtitle(title) +
@@ -36,9 +39,9 @@ plot_points <- function(data, type = "general", filename = "figure.tiff", title 
   }
   if (type == "groups") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(data, aes(x = ORFs, y = total, colour = phylum)) +
+    myplot <- ggplot(data, aes(x = column_orfs, y = column_total, colour = phylum)) +
       geom_point() +
-      ylim(ymin, ymax) +
+      ylim(0, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm", se=FALSE) +
       ggtitle(title) +

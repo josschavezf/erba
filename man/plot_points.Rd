@@ -7,10 +7,11 @@
 plot_points(
   data,
   type = "general",
+  column_total = "total",
+  column_orfs = "ORFs",
   filename = "figure.tiff",
   title = "",
   ylab = "",
-  ymin = 0,
   ymax = 200
 )
 }
@@ -19,13 +20,15 @@ plot_points(
 
 \item{type}{either "general" or "groups" for plotting per phylogenetic group}
 
+\item{column_total}{y column name}
+
+\item{column_orfs}{x column name}
+
 \item{filename}{file name with .tiff extension}
 
-\item{title}{plot name inside " "}
+\item{title}{plot title}
 
-\item{ylab}{yLab name inside " "}
-
-\item{ymin}{A number setting the ylab inferior limit.}
+\item{ylab}{y-axis title}
 
 \item{ymax}{A number setting the ylab superior limit.}
 }
