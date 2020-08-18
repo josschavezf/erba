@@ -18,6 +18,6 @@ Get correlation index of regulator's total number versus ORFs number per
 organism. Shows correlation for each phylogenetic group.
 }
 \examples{
-get_correlation(total_cogs, `Transcription Factors`, `ORFs(X100)`)
+get_correlation(total_cogs, "Transcription Factors", "ORFs(X100)")
 
 }

@@ -31,16 +31,17 @@ intercept <- function(x, y, m){
 #' @param y y-axis name
 #' @param x x-axis name
 #'
-#' @importFrom dplyr as_tibble summarise %>%
+#' @importFrom dplyr as_tibble select summarise %>%
 #'
 #' @examples
-#' get_correlation(total_cogs, `Transcription Factors`, `ORFs(X100)`)
+#' get_correlation(total_cogs, "Transcription Factors", "ORFs(X100)")
 #'
 #' @export
 get_correlation <- function(data, x, y){
   as_tibble(data) %>%
     group_by(phylum) %>%
-    dplyr::summarise(cor = cor(y, x))
+    select(x = x, y = y) %>%
+    summarise(cor = round(cor(y, x),2) )
 }
 
 #' get_linear_coefficients
