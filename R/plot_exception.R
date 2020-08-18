@@ -18,10 +18,6 @@
 plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "", ymax = 120, exception_group = NULL) {
     exception_table <- x %>% filter(phylum == exception_group)
     rest_table <- x %>% filter(!phylum == exception_group)
-    print(exception_group)
-    print(slope(exception_table$ORFs,exception_table$total))
-    print("Rest")
-    print(slope(rest_table$ORFs, rest_table$total))
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(x, aes(x = ORFs, y = total)) +
       geom_point() +
