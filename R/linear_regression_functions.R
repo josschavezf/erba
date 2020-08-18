@@ -28,8 +28,8 @@ intercept <- function(x, y, m){
 #' organism. Shows correlation for each phylogenetic group.
 #'
 #' @param data A `data.frame`
-#' @param y y-axis name
 #' @param x x-axis name
+#' @param y y-axis name
 #'
 #' @importFrom dplyr as_tibble select summarise %>%
 #'
@@ -44,18 +44,21 @@ get_correlation <- function(data, x, y){
     summarise(cor = round(cor(y, x),2) )
 }
 
-#' get_linear_coefficients
-#' @description Get intercept and slope from the data's linear model
-#' @param x data frame to calculate regression model coefficients
-#' @importFrom dplyr %>%
+
+#' Get slope from linear model per phylum
+#'
+#' @param data A `data.frame`
+#' @param x x-axis name
+#' @param y y-axis name
+#'
+#' @return A `tibble` with m = slope for each phylum
 #' @export
-get_linear_coefficients <- function(x){
-  for (i in selected_phylogeny) {
-    myTable <- x %>%
-      filter(phylum == i) %>%
-      select(total, ORFs)
-    my_model <- lm(total~ORFs, data = myTable)
-    print(i)
-    print(coef(my_model))
-  }
+#'
+#' @examples
+#' get_slopePerPhylum(total_cogs,x =  "ORFs(X100)" , y ="Transcription Factors")
+get_slopePerPhylum <- function(data, x, y) {
+  as_tibble(data) %>%
+    group_by(phylum) %>%
+    select(x = x, y = y) %>%
+    summarise(m = round(coef(lm(y ~ x))[2], 2) )
 }
