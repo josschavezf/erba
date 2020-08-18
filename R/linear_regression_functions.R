@@ -26,14 +26,21 @@ intercept <- function(x, y, m){
 #' get_correlation
 #' @description Get correlation index of regulator's total number versus ORFs number per
 #' organism. Shows correlation for each phylogenetic group.
-#' @param x table object
+#'
+#' @param data A `data.frame`
+#' @param y y-axis name
+#' @param x x-axis name
+#'
 #' @importFrom dplyr as_tibble summarise %>%
+#'
+#' @examples
+#' get_correlation(total_cogs, `Transcription Factors`, `ORFs(X100)`)
+#'
 #' @export
-get_correlation <- function(x){
-  as_tibble(x) %>%
+get_correlation <- function(data, x, y){
+  as_tibble(data) %>%
     group_by(phylum) %>%
-    dplyr::summarise(cor = cor(total, ORFs))
-
+    dplyr::summarise(cor = cor(y, x))
 }
 
 #' get_linear_coefficients

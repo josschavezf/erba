@@ -4,12 +4,20 @@
 \alias{get_correlation}
 \title{get_correlation}
 \usage{
-get_correlation(x)
+get_correlation(data, x, y)
 }
 \arguments{
-\item{x}{table object}
+\item{data}{A \code{data.frame}}
+
+\item{x}{x-axis name}
+
+\item{y}{y-axis name}
 }
 \description{
 Get correlation index of regulator's total number versus ORFs number per
 organism. Shows correlation for each phylogenetic group.
+}
+\examples{
+get_correlation(total_cogs, `Transcription Factors`, `ORFs(X100)`)
+
 }
