@@ -4,7 +4,7 @@
 \alias{plot_repressor}
 \title{plot_repressor}
 \usage{
-plot_repressor(data, filename, title, ylab, ymin = 0, ymax = 150)
+plot_repressor(data, filename, title, ylab, ymax = 150)
 }
 \arguments{
 \item{data}{A data.frame object, needs to have the columns repressor and non_repressor for transcription factors}
@@ -14,8 +14,6 @@ plot_repressor(data, filename, title, ylab, ymin = 0, ymax = 150)
 \item{title}{plot name inside " "}
 
 \item{ylab}{ylab name inside " "}
-
-\item{ymin}{ylim min}
 
 \item{ymax}{ylim max}
 }
