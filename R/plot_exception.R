@@ -6,7 +6,6 @@
 #' @param filename file name with .tiff extension
 #' @param title plot name inside " "
 #' @param ylab ylab name inside " "
-#' @param ymin A number setting the ylab inferior limit.
 #' @param ymax A number setting the ylab superior limit.
 #' @examples
 #' plot_exception(data_riboswitch, filename = "riboswitch.tiff",
@@ -16,7 +15,7 @@
 #'                 exception_group = "Firmicutes" )
 
 #' @export
-plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "", ymin = 0, ymax = 120, exception_group = NULL) {
+plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "", ymax = 120, exception_group = NULL) {
     exception_table <- x %>% filter(phylum == exception_group)
     rest_table <- x %>% filter(!phylum == exception_group)
     print(exception_group)
@@ -26,7 +25,7 @@ plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "",
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(x, aes(x = ORFs, y = total)) +
       geom_point() +
-      ylim(ymin, ymax) +
+      ylim(0, ymax) +
       xlim(0,100) +
       geom_abline(aes(intercept = intercept(exception_table$ORFs, exception_table$total,
                                             slope(exception_table$ORFs,exception_table$total)),

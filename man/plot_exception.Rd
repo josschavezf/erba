@@ -9,7 +9,6 @@ plot_exception(
   filename = "figure.tiff",
   title = "",
   ylab = "",
-  ymin = 0,
   ymax = 120,
   exception_group = NULL
 )
@@ -22,8 +21,6 @@ plot_exception(
 \item{title}{plot name inside " "}
 
 \item{ylab}{ylab name inside " "}
-
-\item{ymin}{A number setting the ylab inferior limit.}
 
 \item{ymax}{A number setting the ylab superior limit.}
 
