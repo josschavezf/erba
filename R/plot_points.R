@@ -10,19 +10,20 @@
 #' @param column_total y column name
 #' @param column_orfs x column name
 #' @param ymax A number setting the ylab superior limit.
+#' @param model.degree Degrees for the polynomial regression model. By default model.degree = 1.
 #'
 #' @examples
 #' plot_points(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120)
 #' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
 #' @export
-plot_points <- function(data, type = "general", column_total = "total", column_orfs = "ORFs",filename = "figure.tiff", title = "", ylab = "", ymax = 200 ) {
+plot_points <- function(data, type = "general", column_total = "total", column_orfs = "ORFs",filename = "figure.tiff", title = "", ylab = "", ymax = 200, model.degree = 1 ) {
   if (type == "general") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x = column_orfs, y = column_total)) +
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm", se=FALSE) +
+      geom_smooth(method="lm",formula = y ~ poly(column_orfs, model.degree), se=FALSE) +
       ggtitle(title) +
       labs(x= "ORFs (x 100)",y = ylab) +
       theme(panel.grid.major = element_blank(),
@@ -43,7 +44,7 @@ plot_points <- function(data, type = "general", column_total = "total", column_o
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm", se=FALSE) +
+      geom_smooth(method="lm",formula = y ~ poly(column_orfs, model.degree) ,se=FALSE) +
       ggtitle(title) +
       labs(x= "ORFs (x 100)",y = ylab) +
       theme(panel.grid.major = element_blank(),

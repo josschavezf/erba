@@ -12,7 +12,8 @@ plot_points(
   filename = "figure.tiff",
   title = "",
   ylab = "",
-  ymax = 200
+  ymax = 200,
+  model.degree = 1
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ plot_points(
 \item{ylab}{y-axis title}
 
 \item{ymax}{A number setting the ylab superior limit.}
+
+\item{model.degree}{Degrees for the polynomial regression model. By default model.degree = 1.}
 }
 \description{
 plot total regulators versus ORFs per genome
