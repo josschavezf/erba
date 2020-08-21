@@ -2,6 +2,7 @@
 #'
 #' @param x A `data.frame`
 #' @param title Plot title
+#' @param filename Filename
 #'
 #' @return A title.tiff file
 #' @import ggplot2
@@ -11,12 +12,12 @@
 #' data %>%
 #' filter(phylum == "Actinobacteria") %>%
 #' plot_regulators("Actinobacteria")
-plot_regulators <- function(x, title = "") {
+plot_regulators <- function(x, filename = "", title = "") {
   # define colors
   colors_reg <- c("red", "blue", "darkgreen")
   names(colors_reg) <- c("Sigma factors", "Transcription factors", "Riboswitches")
 
-  tiff(filename = paste0("figures/",title,".tiff"), width = 1234, height = 880, units = 'px', res = 100)
+  tiff(filename = paste0("figures/",filename,".tiff"), width = 1234, height = 880, units = 'px', res = 100)
   myplot <- ggplot(x, aes(x = `ORFs(X100)`, y = total, colour = type)) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +

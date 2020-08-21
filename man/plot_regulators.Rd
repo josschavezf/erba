@@ -4,10 +4,12 @@
 \alias{plot_regulators}
 \title{Plot TFs, Sigmas and Riboswitches versus genome size}
 \usage{
-plot_regulators(x, title = "")
+plot_regulators(x, filename = "", title = "")
 }
 \arguments{
 \item{x}{A \code{data.frame}}
+
+\item{filename}{Filename}
 
 \item{title}{Plot title}
 }
