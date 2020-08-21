@@ -23,7 +23,7 @@ plot_points <- function(data, type = "general", column_total = "total", column_o
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm",formula = y ~ poly(column_orfs, model.degree), se=FALSE) +
+      geom_smooth(method="lm",formula = y ~ poly(x, model.degree), se=FALSE) +
       ggtitle(title) +
       labs(x= "ORFs (x 100)",y = ylab) +
       theme(panel.grid.major = element_blank(),
@@ -44,7 +44,7 @@ plot_points <- function(data, type = "general", column_total = "total", column_o
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm",formula = y ~ poly(column_orfs, model.degree) ,se=FALSE) +
+      geom_smooth(method="lm",formula = y ~ poly(x, model.degree) ,se=FALSE) +
       ggtitle(title) +
       labs(x= "ORFs (x 100)",y = ylab) +
       theme(panel.grid.major = element_blank(),
