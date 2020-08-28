@@ -3,12 +3,13 @@
 #' @description plot total regulators versus ORFs per genome
 #'
 #' @param data A data.frame object
+#' @param x variable name
+#' @param y variable name
 #' @param type either "general" or "groups" for plotting per phylogenetic group
 #' @param filename file name with .tiff extension
 #' @param title plot title
+#' @param xlab x-axis title
 #' @param ylab y-axis title
-#' @param column_total y column name
-#' @param column_orfs x column name
 #' @param ymax A number setting the ylab superior limit.
 #' @param model.degree Degrees for the polynomial regression model. By default model.degree = 1.
 #'
@@ -16,16 +17,16 @@
 #' plot_points(data = data_kos_sigma, type = "general", filename = "example_general.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120)
 #' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
 #' @export
-plot_points <- function(data, type = "general", column_total = "total", column_orfs = "ORFs",filename = "figure.tiff", title = "", ylab = "", ymax = 200, model.degree = 1 ) {
+plot_points <- function(data, type = "general", x, y,filename = "figure.tiff", title = "", xlab = "" ,ylab = "", ymax = 200, model.degree = 1 ) {
   if (type == "general") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(data, aes(x = column_orfs, y = column_total)) +
+    myplot <- ggplot(data, aes(x, y)) +
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm",formula = y ~ poly(x, model.degree), se=FALSE) +
       ggtitle(title) +
-      labs(x= "ORFs (x 100)",y = ylab) +
+      labs(x= xlab,y = ylab) +
       theme(panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
             panel.background = element_blank(),
@@ -40,13 +41,13 @@ plot_points <- function(data, type = "general", column_total = "total", column_o
   }
   if (type == "groups") {
     tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(data, aes(x = column_orfs, y = column_total, colour = phylum)) +
+    myplot <- ggplot(data, aes(x , y, colour = phylum)) +
       geom_point() +
       ylim(0, ymax) +
       xlim(0,100) +
       geom_smooth(method="lm",formula = y ~ poly(x, model.degree) ,se=FALSE) +
       ggtitle(title) +
-      labs(x= "ORFs (x 100)",y = ylab) +
+      labs(x= xlab,y = ylab) +
       theme(panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
             panel.background = element_blank(),
