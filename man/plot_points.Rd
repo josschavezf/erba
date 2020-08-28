@@ -7,10 +7,11 @@
 plot_points(
   data,
   type = "general",
-  column_total = "total",
-  column_orfs = "ORFs",
+  x,
+  y,
   filename = "figure.tiff",
   title = "",
+  xlab = "",
   ylab = "",
   ymax = 200,
   model.degree = 1
@@ -21,13 +22,15 @@ plot_points(
 
 \item{type}{either "general" or "groups" for plotting per phylogenetic group}
 
-\item{column_total}{y column name}
+\item{x}{variable name}
 
-\item{column_orfs}{x column name}
+\item{y}{variable name}
 
 \item{filename}{file name with .tiff extension}
 
 \item{title}{plot title}
+
+\item{xlab}{x-axis title}
 
 \item{ylab}{y-axis title}
 
