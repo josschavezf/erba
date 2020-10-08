@@ -18,51 +18,42 @@
 #' plot_points(data = data_kos_sigma, type = "groups", filename = "example_groups.tiff", title = "Sigma factors", ylab = "Sigma factors per genome", ymax = 120 )
 #' @export
 plot_points <- function(data, type = "general", x, y,filename = "figure.tiff", title = "", xlab = "" ,ylab = "", ymax = 200, model.degree = 1 ) {
+  mytheme <- theme(panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank(),
+                   panel.background = element_blank(),
+                   plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+                   axis.line = element_line(colour = "black", size = 1.2),
+                   axis.title = element_text(size = 14, face = "bold"),
+                   axis.text = element_text(size = 12, face = "bold"),
+                   axis.ticks = element_line(size = 1.2, lineend = 2),
+                   legend.title = element_blank(),
+                   legend.position = c(0.13,0.7),
+                   legend.text = element_text(size = 8),
+                   legend.key.size = unit(0.45, "cm"))
+
   if (type == "general") {
-    tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x, y)) +
-      geom_point() +
+      geom_point(size = 0.5) +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm",formula = y ~ poly(x, model.degree), se=FALSE) +
+      geom_smooth(method="lm", se=FALSE, size = 0.5) +
       ggtitle(title) +
       labs(x= xlab,y = ylab) +
-      theme(panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank(),
-            panel.background = element_blank(),
-            plot.title = element_text(hjust = 0.5, size = 28, face = "bold"),
-            axis.title = element_text(size = 26, face="bold"),
-            axis.text = element_text(size = 22, face = "bold"),
-            axis.ticks = element_line(size = 1.5, lineend = 2),
-            axis.line = element_line(colour = "black", size=1.5)) +
+      mytheme +
       scale_color_manual(values = colors_groups,  aesthetics = "colour")
-    print(myplot)
-    dev.off()
   }
   if (type == "groups") {
-    tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
     myplot <- ggplot(data, aes(x , y, colour = phylum)) +
-      geom_point() +
+      geom_point(size = 0.5) +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_smooth(method="lm",formula = y ~ poly(x, model.degree) ,se=FALSE) +
+      geom_smooth(method="lm",formula = y ~ x ,se=FALSE, size = 0.5) +
       ggtitle(title) +
       labs(x= xlab,y = ylab) +
-      theme(panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank(),
-            panel.background = element_blank(),
-            plot.title = element_text(hjust = 0.5, size = 28, face = "bold"),
-            axis.line = element_line(colour = "black", size = 1.5),
-            axis.title = element_text(size = 26, face = "bold"),
-            axis.text = element_text(size = 22, face = "bold"),
-            axis.ticks = element_line(size = 1.5, lineend = 2),
-            legend.title = element_blank(),
-            legend.position = c(0.13,0.7),
-            legend.text = element_text(size = 20),
-            legend.key.size = unit(0.45, "in")) +
+      mytheme +
       scale_color_manual(values = colors_groups2,  aesthetics = "colour")
-    print(myplot)
-    dev.off()
   }
+  ggsave(filename, plot = myplot, device = "tiff",
+         width = 7, height = 5, units = "cm", dpi = 300,  scale = 2)
 }
 

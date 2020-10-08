@@ -18,27 +18,27 @@
 plot_exception <- function (x, filename =  "figure.tiff", title = "", ylab = "", ymax = 120, exception_group = NULL) {
     exception_table <- x %>% filter(phylum == exception_group)
     rest_table <- x %>% filter(!phylum == exception_group)
-    tiff(filename = filename, width = 1234, height = 880, units = 'px', res = 100)
-    myplot <- ggplot(x, aes(x = ORFs, y = total)) +
-      geom_point() +
+    myplot <- ggplot(x, aes(x = CDS, y = total)) +
+      geom_point(size = 0.5) +
       ylim(0, ymax) +
       xlim(0,100) +
-      geom_abline(aes(intercept = intercept(exception_table$ORFs, exception_table$total,
-                                            slope(exception_table$ORFs,exception_table$total)),
-                      slope = slope(exception_table$ORFs,exception_table$total)), color = "blue") +
-      geom_abline(aes(intercept = intercept(rest_table$ORFs, rest_table$total,
-                                            slope(rest_table$ORFs, rest_table$total)),
-                      slope = slope(rest_table$ORFs, rest_table$total)),color = "red", size = 1) +
+      geom_abline(aes(intercept = intercept(exception_table$CDS, exception_table$total,
+                                            slope(exception_table$CDS,exception_table$total)),
+                      slope = slope(exception_table$CDS,exception_table$total)), color = "blue") +
+      geom_abline(aes(intercept = intercept(rest_table$CDS, rest_table$total,
+                                            slope(rest_table$CDS, rest_table$total)),
+                      slope = slope(rest_table$CDS, rest_table$total)),color = "red", size = 0.5) +
       ggtitle(title) +
-      labs(x= "ORFs (x 100)", y = ylab) +
+      labs(x= "CDS (x 100)", y = ylab) +
       theme(panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
             panel.background = element_blank(),
-            plot.title = element_text(hjust = 0.5, size = 28, face = "bold"),
-            axis.title = element_text(size = 26, face="bold"),
-            axis.text = element_text(size = 22, face = "bold"),
-            axis.ticks = element_line(size = 1.5, lineend = 2),
-            axis.line = element_line(colour = "black", size=1.5))
-    print(myplot)
-    dev.off()
+            plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+            axis.title = element_text(size = 14, face="bold"),
+            axis.text = element_text(size = 12, face = "bold"),
+            axis.ticks = element_line(size = 1.2, lineend = 2),
+            axis.line = element_line(colour = "black", size=1.2))
+    ggsave(filename, plot = myplot, device = "tiff",
+           width = 7, height = 5, units = "cm", dpi = 300,  scale = 2)
+
 }
