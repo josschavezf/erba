@@ -1,6 +1,6 @@
 # erba package
 <img src = "https://github.com/josschavezf/erba/blob/master/erba_logo.png"
-     style="float: right; margin-right: 10px; height: 10px; width: 10px; align: right;"/>
+     style="height: 10%; width: 10%; align: right;"/>
 
 ## Author
 
