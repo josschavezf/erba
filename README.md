@@ -1,5 +1,6 @@
 # erba package
-<img src = "/erba_logo.png" style="height:5px; width:5px;"/>
+<img src = "/erba_logo.png"
+style="float: right; margin-right: 10px;"/>
 
 ## Author
 
